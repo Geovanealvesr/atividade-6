@@ -1,21 +1,16 @@
 const express = require('express');
 const AutomobileController = require('../controller/AutomobileController');
+const AutomobileDetailsController = require('../controller/AutomobileDetailsController');
 const routes = express.Router();
 
-routes.get("/teste", (req, res) => {
-  AutomobileController.teste(req, res); // Chame a função teste do controlador
-});
+routes.get('/automobile', AutomobileController.consultarVeiculo);
+routes.post('/automobile', AutomobileController.criarVeiculo);
+routes.put('/automobile/:id', AutomobileController.atualizarVeiculo);
+routes.delete('/automobile/:id', AutomobileController.deletarVeiculo);
 
-routes.post("/criar", async (req, res) => {
-  await AutomobileController.criarVeiculo(req, res); // Chame a função criarVeiculo do controlador
-});
-
-routes.put("/atualizar", async (req, res) => {
-  await AutomobileController.atualizarVeiculo(req, res); // Chame a função atualizarVeiculo do controlador
-});
-
-routes.delete("/deletar", async (req, res) => {
-  await AutomobileController.deletarVeiculo(req, res); // Chame a função deletarVeiculo do controlador
-});
+routes.get('/automobile-details', AutomobileDetailsController.consultarDetalhesAutomovel);
+routes.post('/automobile-details', AutomobileDetailsController.criarDetalhesAutomovel);
+routes.put('/automobile-details/:id', AutomobileDetailsController.atualizarDetalhesAutomovel);
+routes.delete('/automobile-details/:id', AutomobileDetailsController.deletarDetalhesAutomovel);
 
 module.exports = routes;

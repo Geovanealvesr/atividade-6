@@ -1,3 +1,5 @@
+const Automobile = require('../models/Automobile');
+
 const AutomobileController = {
     criarVeiculo: 
         async (req, res) => {
@@ -76,9 +78,7 @@ const AutomobileController = {
         }
       },
 
-      teste: (req, res) => {
-        res.send("funcionou o controller");
-      }
+     
 
     
 };
