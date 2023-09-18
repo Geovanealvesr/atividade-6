@@ -1,7 +1,13 @@
 const { DataTypes } = require('sequelize');
 const db = require('../database');
+const Automobile = require('./Automobile');
 
 const AutomobileDetails = db.define('AutomobileDetails', {
+  id: {
+    type: DataTypes.INTEGER.UNSIGNED,
+    autoIncrement: true,
+    primaryKey: true,
+  },
   quilometragem: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -11,11 +17,19 @@ const AutomobileDetails = db.define('AutomobileDetails', {
     allowNull: false,
   },
   outrasCaracteristicas: {
-    type: DataTypes.STRING, 
-    allowNull: true, // Pode ser nulo se não houver informações adicionais
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  automobile_id: { 
+    type: DataTypes.INTEGER.UNSIGNED,
+    allowNull: false,
+    references: {
+      model: 'Automobile', 
+      key: 'id',
+    },
   },
 }, {
-  tableName: 'automobile_details'
+  tableName: 'automobile_details',
 });
 
 (async () => {

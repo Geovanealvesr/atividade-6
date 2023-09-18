@@ -1,27 +1,49 @@
-const Automobile = require('../models/Automobile');
+const {Automobile, AutomobileDetails} = require('../models');
 
 const AutomobileController = {
+  
+
+    verTodos: async (req, res) => {
+      try {
+        const automobileId = req.params.id; // Obtenha o ID do veículo a partir dos parâmetros da URL
+    
+        const automobile = await Automobile.findOne({
+          where: { id: automobileId },
+          include: [{ model: AutomobileDetails }],
+        });
+    
+        if (automobile) {
+          res.json(automobile);
+        } else {
+          res.status(404).json({ error: 'Veículo não encontrado' });
+        }
+      } catch (error) {
+        console.error('Erro ao buscar veículo:', error);
+        res.status(500).json({ error: 'Erro ao buscar veículo' });
+      }
+    },
+
     criarVeiculo: 
-        async (req, res) => {
-            try {
-              const { marca, modelo, ano, placa } = req.body;
-          
-              if (!marca || !modelo || !ano || !placa) {
-                return res.status(400).json({ error: 'Informe marca, modelo, ano e placa.' });
-              }
-          
-              const newAutomobile = await Automobile.create({
-                marca,
-                modelo,
-                ano,
-                placa,
-              });
-          
-              res.status(201).json(newAutomobile);
-            } catch (error) {
-              console.error('Erro ao criar um automóvel:', error);
-              res.status(500).send('Erro ao criar um automóvel');
-            }
+    async (req, res) => {
+      try {
+        // Extrai os dados do corpo da solicitação JSON
+        const { marca, modelo, ano, placa, quilometragem, cor } = req.body;
+    
+        // Cria o veículo na tabela Automobile
+        const automobile = await Automobile.create({ marca, modelo, ano, placa });
+    
+        // Cria os detalhes do veículo na tabela AutomobileDetails
+        const automobileDetails = await AutomobileDetails.create({
+          quilometragem,
+          cor,
+          automobile_id: automobile.id, // Associe os detalhes ao veículo recém-criado
+        });
+    
+        res.status(201).json({ automobile, automobileDetails });
+      } catch (error) {
+        console.error('Erro ao criar veículo com detalhes:', error);
+        res.status(500).json({ error: 'Erro ao criar veículo com detalhes' });
+      }
     },
     
     atualizarVeiculo: async (req, res) => {

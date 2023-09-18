@@ -1,4 +1,4 @@
-const AutomobileDetails = require('../models/AutomobileDetails');
+const {Automobile, AutomobileDetails} = require('../models');
 
 const AutomobileDetailsController = {
   criarDetalhesAutomovel: async (req, res) => {

@@ -1,6 +1,9 @@
 const express = require('express');
 const AutomobileController = require('../controller/AutomobileController');
 const AutomobileDetailsController = require('../controller/AutomobileDetailsController');
+const Automobile = require('../models/Automobile');
+const AutomobileDetails = require('../models/AutomobileDetails');
+
 const routes = express.Router();
 
 routes.get('/automobile', AutomobileController.consultarVeiculo);

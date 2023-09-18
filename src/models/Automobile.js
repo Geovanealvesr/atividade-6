@@ -1,8 +1,12 @@
 const { DataTypes } = require('sequelize');
 const db = require('../database');
 
-
 const Automobile = db.define('Automobile', {
+  id: {
+    type: DataTypes.INTEGER.UNSIGNED,
+    autoIncrement: true,
+    primaryKey: true,
+  },
   marca: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -29,3 +33,4 @@ const Automobile = db.define('Automobile', {
 })();
 
 module.exports = Automobile;
+
