@@ -1,18 +1,18 @@
 const express = require('express');
-const AutomobileController = require('../controller/AutomobileController');
-const AutomobileDetailsController = require('../controller/AutomobileDetailsController');
-
+const PedidoController = require('../controller/OrdensController'); // Importe o controlador de pedidos
+const FuncionarioController = require('../controller/FuncionariosController'); // Importe o controlador de funcionários
 
 const routes = express.Router();
 
-routes.get('/automobile', AutomobileController.consultarVeiculo);
-routes.post('/automobile', AutomobileController.criarVeiculo);
-routes.put('/automobile/:id', AutomobileController.atualizarVeiculo);
-routes.delete('/automobile/:id', AutomobileController.deletarVeiculo);
+// Rotas para pedidos
+routes.get('/pedidos', PedidoController.verTodos);
+routes.get('/pedidos/:id', PedidoController.verPedido);
+routes.post('/pedidos', PedidoController.criarPedido);
+routes.put('/pedidos/:id', PedidoController.atualizarPedido);
+routes.delete('/pedidos/:id', PedidoController.deletarPedido);
 
-routes.get('/automobile-details', AutomobileDetailsController.consultarDetalhesAutomovel);
-routes.post('/automobile-details', AutomobileDetailsController.criarDetalhesAutomovel);
-routes.put('/automobile-details/:id', AutomobileDetailsController.atualizarDetalhesAutomovel);
-routes.delete('/automobile-details/:id', AutomobileDetailsController.deletarDetalhesAutomovel);
+// Rotas para funcionários
+routes.get('/funcionario', FuncionarioController.listarFuncionarios);
+routes.post('/funcionario', FuncionarioController.criarFuncionario);
 
 module.exports = routes;

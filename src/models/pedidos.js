@@ -1,36 +1,43 @@
 const { DataTypes } = require('sequelize');
 const db = require('../database');
 
-const Automobile = db.define('Automobile', {
+const Pedidos = db.define('Pedidos', {
   id: {
     type: DataTypes.INTEGER.UNSIGNED,
     autoIncrement: true,
     primaryKey: true,
   },
-  marca: {
+  nome: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  modelo: {
+  cpf: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  ano: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  placa: {
+  telefone: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  plano: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  horario: {
+    type: DataTypes.STRING,
+    allowNull: false,
   }
 }, {
-  tableName: 'automobile' 
+  tableName: 'pedidos',
+  schema: 'ordens', 
 });
 
 (async () => {
-  await Automobile.sync({ alter: true }); 
+  await Pedidos.sync({ alter: true });
 })();
 
-module.exports = Automobile;
-
+module.exports = Pedidos;
