@@ -27,10 +27,10 @@ const FuncionarioController = {
 
   listarFuncionarios: async (req, res) => {
     try {
-      // Busque todos os funcionários no banco de dados
+      
       const funcionarios = await Funcionario.findAll();
 
-      // Retorna a lista de funcionários em formato JSON
+      
       res.json(funcionarios);
     } catch (error) {
       console.error('Erro ao listar funcionários:', error);

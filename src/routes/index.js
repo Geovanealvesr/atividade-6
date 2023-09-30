@@ -1,6 +1,6 @@
 const express = require('express');
-const PedidoController = require('../controller/OrdensController'); // Importe o controlador de pedidos
-const FuncionarioController = require('../controller/FuncionariosController'); // Importe o controlador de funcionários
+const PedidoController = require('../controller/OrdensController'); 
+const FuncionarioController = require('../controller/FuncionariosController'); 
 
 const routes = express.Router();
 
